@@ -1,0 +1,17 @@
+spotify_releases.api_keys_form:
+  path: '/admin/config/spotify_releases/apikeys'
+  defaults:
+    _form: '\Drupal\spotify_releases\Form\ApiKeysForm'
+    _title: 'Spotify API Keys Form'
+  requirements:
+    _permission: 'access administration pages'
+  options:
+    _admin_route: TRUE
+
+spotify_releases.artists_controller_getArtists:
+  path: '/artista/{idartist}'
+  defaults:
+    _controller: '\Drupal\spotify_releases\Controller\ArtistsController::getArtists'
+    _title: 'Artist album'
+  requirements:
+    _permission: 'access content'

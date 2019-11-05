@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+## Initialize a Docksal powered Drupal 8 site
+##
+## Usage: fin init
+
+# Abort if anything fails
+set -e
+
+#-------------------------- Settings --------------------------------
+
+# PROJECT_ROOT is passed from fin.
+# The following variables are configured in the '.env' file: DOCROOT, VIRTUAL_HOST.
+
+SITE_DIRECTORY="default"
+DOCROOT_PATH="${PROJECT_ROOT}"
+SITEDIR_PATH="${DOCROOT_PATH}/sites/${SITE_DIRECTORY}"
+SITE_ENV="$@";
+DATABASE_DIR="${SITEDIR_PATH}/db/"
+
+#-------------------------- END: Settings --------------------------------
+
+#-------------------------- Helper functions --------------------------------
+
+
+
+# Console colors
+red='\033[0;31m'
+green='\033[0;32m'
+green_bg='\033[42m'
+yellow='\033[1;33m'
+NC='\033[0m'
+
+echo-red () { echo -e "${red}$1${NC}"; }
+echo-green () { echo -e "${green}$1${NC}"; }
+echo-green-bg () { echo -e "${green_bg}$1${NC}"; }
+echo-yellow () { echo -e "${yellow}$1${NC}"; }
+
+
+is_linux ()
+{
+    uname | grep 'Linux' >/dev/null
+}
+
+#-------------------------- Functions --------------------------------
+
+# Deploy from Pantheon
+deploy ()
+{
+    echo -e "Deploy ${SITE_ENV}"
+    if is_linux; then
+       ~/vendor/bin/terminus env:deploy ${PANTHEON_SITE}.${SITE_ENV} --note="Deploy" --cc;
+       ~/vendor/bin/terminus drush ${PANTHEON_SITE}.${SITE_ENV} -- cim -y
+       ~/vendor/bin/terminus drush ${PANTHEON_SITE}.${SITE_ENV} cr all;
+    else
+        terminus env:deploy ${PANTHEON_SITE}.${SITE_ENV} --note="Deploy" --cc;
+        terminus drush ${PANTHEON_SITE}.${SITE_ENV} -- cim -y
+        terminus drush ${PANTHEON_SITE}.${SITE_ENV} cr all;
+    fi
+}
+#-------------------------- END: Functions --------------------------------
+
+
+time deploy;
+
+echo -en "${green_bg} DONE! ${NC} ";
+
+#-------------------------- END: Execution --------------------------------

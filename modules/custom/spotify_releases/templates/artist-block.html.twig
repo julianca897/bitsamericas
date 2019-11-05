@@ -1,0 +1,36 @@
+{#
+/**
+* @file
+* Default theme implementation to display a block.
+*
+* @see template_preprocess_block()
+*
+* @ingroup themeable
+*/
+#}
+<div style="background-color: #0f0f0f; float: left">
+    <div style="float: left;width: 200px;">
+        <img src="{{ data.artistimage }}" style="width: 200px;"/>
+    </div>
+    <div style="float: left;width: 70%;font-size: 20px;color: #FFF;">
+        {{ data.artistname }}
+    </div>
+    <div style="float: left; width: 100%;">
+        <table>
+            <thead>
+                <td>Foto</td>
+                <td>Album</td>
+                <td>Canci&oacute;n</td>
+            </thead>
+            <tbody>
+                {% for data in data.songs %}
+                    <tr>
+                        <td><img src="{{ data.albumimage }}" style="width: 60px;"/></td>
+                        <td><span>{{ data.albumname }}</span></td>
+                        <td><span>{{ data.songname }}</span></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

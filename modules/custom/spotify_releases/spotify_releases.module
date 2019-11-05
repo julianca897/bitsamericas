@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Contains spotify_releases.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function spotify_releases_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the spotify_releases module.
+    case 'help.page.spotify_releases':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function spotify_releases_theme() {
+  return [
+    'spotify_releases_block' => [
+      'variables' => [
+        'data' => NULL,
+        'code' => NULL,
+      ]
+    ],
+    'artist_block' => [
+      'variables' => [
+        'data' => NULL
+      ],
+    ],
+  ];
+}
+

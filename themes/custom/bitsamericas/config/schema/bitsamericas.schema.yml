@@ -1,0 +1,5 @@
+# Schema for the theme setting configuration file of the bitsamericas theme.
+
+bitsamericas.settings:
+  type: theme_settings
+  label: 'bitsamericas settings'

@@ -1,0 +1,17 @@
+<div class="releases" style="background-color: #0f0f0f; float: left;">
+{% for data in data %}
+    <a href="/artista/{{ data.artistid }}?code={{ code }}">
+    <div class="album" style="float: left;width: 250px; background-color: #FFF">
+        <div style="float: left; width: 100%;">
+            <img src="{{ data.image }}" style="width: 200px;"/>
+        </div>
+        <span class="album-name">{{ data.albumname }}</span>
+        <div class="artist-related" style="width: 100%;float: left;margin-top: 10px;">
+            {% for related in data.artist_related %}
+                <span class="item-related">{{ related }} &nbsp;&nbsp;&nbsp;&nbsp;</span>
+            {% endfor %}
+        </div>
+    </div>
+    </a>
+{% endfor %}
+</div>

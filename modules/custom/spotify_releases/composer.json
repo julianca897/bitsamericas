@@ -1,0 +1,13 @@
+{
+    "name": "spotify_releases",
+    "type": "drupal-module",
+    "description": "My Awesome Module",
+    "keywords": [
+    ],
+    "homepage": "https://www.drupal.org/project/spotify_releases",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/spotify_releases",
+        "source": "http://cgit.drupalcode.org/spotify_releases",
+    },
+}

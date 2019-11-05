@@ -1,0 +1,6 @@
+spotify_releases.api_keys_form:
+  title: 'Spotify API Keys'
+  route_name: spotify_releases.api_keys_form
+  description: 'A description for the menu entry'
+  parent: system.admin_config_system
+  weight: 99

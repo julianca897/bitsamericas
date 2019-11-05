@@ -1,0 +1,15 @@
+services:
+  logger.channel.spotify_releases:
+    parent: logger.channel_base
+    arguments: ['spotify_releases']
+
+  spotify.artist:
+    class: Drupal\spotify_releases\Service\SpotifyArtistRelatedServices
+    arguments: ["@logger.channel.spotify_releases"]
+  spotify.access:
+    class: Drupal\spotify_releases\Service\SpotifyReleasesServices
+    arguments: ["@logger.channel.spotify_releases", "@spotify.artist"]
+
+  spotify_releases.artist:
+    class: Drupal\spotify_releases\Service\ArtistsService
+    arguments: ["@logger.channel.spotify_releases"]
